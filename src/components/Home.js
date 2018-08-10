@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class Home extends React.Component {
-
     constructor(props){
-        super();
+        super(props);
         this.state = {
             age: props.initialAge,
-            status: 0
+            status: 0,
+            homeLink: "Changed Link"
         };
         setTimeout(() => {
                 this.setState({
@@ -23,6 +23,10 @@ export default class Home extends React.Component {
         });
     }
 
+    onChangeLink(){
+        this.props.changeLink(this.state.homeLink);
+    }
+
     render(){
         return (
             <div className="container">
@@ -36,6 +40,10 @@ export default class Home extends React.Component {
                 <hr />
                 <button onClick={this.props.greet} 
                     className="btn btn-primary">Greet
+                </button> 
+                <hr />
+                <button onClick={this.onChangeLink.bind(this)}
+                    className="btn btn-primary">Change Header Link
                 </button> 
             </div>
           
