@@ -29,9 +29,10 @@ class App extends Component {
         <hr/>
         <Home name={"Raissa"} 
           initialAge={27} 
-          greet={this.onGreet}
+          greet={this.onGreet}  
           changeLink={this.onChangeLinkName.bind(this) //Because of the "This"
           }
+          initialLinkName={this.state.homeLink}
         />
       </div>
     );
