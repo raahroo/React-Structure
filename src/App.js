@@ -7,8 +7,9 @@ import './App.css';
 class App extends Component {
   constructor(props){
     super(props);
-    this.state={
-      homeLink: "Home"
+    this.state = {
+      homeLink: "Home",
+      homeMounted: true
     }
   }
 
@@ -22,18 +23,35 @@ class App extends Component {
     });
   }
 
+  onChangeHomeMounted(){
+    this.setState({
+      homeMounted: !this.state.homeMounted
+    });
+  }
+
   render() {
-    return (
-      <div className="App">
-        <Header homeLink={this.state.homeLink}/>
-        <hr/>
-        <Home name={"Raissa"} 
+    let homeCmp= "";
+
+    if(this.state.homeMounted){
+      homeCmp =  <Home name={"Raissa"} 
           initialAge={27} 
           greet={this.onGreet}  
           changeLink={this.onChangeLinkName.bind(this) //Because of the "This"
           }
           initialLinkName={this.state.homeLink}
-        />
+        />;
+    }
+    return (
+      <div className="App">
+        <Header homeLink={this.state.homeLink}/>
+        <hr/>
+        {homeCmp}
+        <hr/>
+        <button 
+          className="btn btn-primary"
+          onClick={this.onChangeHomeMounted.bind(this)} >
+          UnMount Component
+        </button>
       </div>
     );
   }
