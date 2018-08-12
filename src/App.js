@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import Home from './components/Home';
+import Array from './components/Array';
 
 import './App.css';
 
@@ -9,7 +10,12 @@ class App extends Component {
     super(props);
     this.state = {
       homeLink: "Home",
-      homeMounted: true
+      homeMounted: true,
+      simpleArray: [
+        {name: "Name 1"},
+        {name: "Name 2"},
+        {name: "Name 3"}
+      ]
     }
   }
 
@@ -27,6 +33,19 @@ class App extends Component {
     this.setState({
       homeMounted: !this.state.homeMounted
     });
+  }
+
+  onChangeArray(){
+    this.setState({
+      simpleArray: [
+        {name: "Name 1"},
+        {name: "Name 2"},
+        {name: "Name 3"},
+        {name: "Name 4"},
+        {name: "Name 5"},
+        {name: "Name 6"},
+      ]
+    })
   }
 
   render() {
@@ -52,6 +71,15 @@ class App extends Component {
           onClick={this.onChangeHomeMounted.bind(this)} >
           UnMount Component
         </button>
+        <hr/>
+        <Array array={this.state.simpleArray} />
+
+         <button 
+          className="btn btn-primary"
+          onClick={this.onChangeArray.bind(this)} >
+          Change Array
+        </button>
+
       </div>
     );
   }
